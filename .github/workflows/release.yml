@@ -1,4 +1,4 @@
-name: Clojure CI
+name: Clojars
 
 on:
   push:
@@ -10,7 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Upload to clojars
+    - name: Install dependencies
+      run: lein deps
+    - name: Run tests
+      run: lein test
+    - name: Publish
       run: lein deploy snapshots
       env:
           CLOJARS_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
