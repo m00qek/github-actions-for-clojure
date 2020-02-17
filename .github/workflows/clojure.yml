@@ -13,3 +13,8 @@ jobs:
       run: lein deps
     - name: Run tests
       run: lein test
+    - name: Publish
+      run: lein deploy snapshots
+      env:
+          CLOJARS_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
+          CLOJARS_PASSWD: ${{ secrets.CLOJARS_PASSWD }}
